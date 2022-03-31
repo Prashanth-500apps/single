@@ -1,109 +1,70 @@
 <template>
   <div>
-    <h2>Creating APIs</h2>
-    <div>
-      <b-form-input v-model="text" placeholder="Enter train name">
-      </b-form-input>
-    </div>
-    <br />
-
-    <b-button @click="getData()">Search Data</b-button>
-
-    <div>
-      {{ searchData.data }}
-    </div>
-    <br /><br /><br />
-    <table align="center">
-      <thead>
-        <tr>
-          <th>continent</th>
-          <th>Region</th>
-          <th>Country</th>
-          <th>Capital</th>
-          <th>fips</th>
-          <th>iso2</th>
-          <th>iso3</th>
-          <th>isoNo</th>
-          <th>internet</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr v-for="user in searchData.data" :key="user.id">
-          <td>{{ user.continent }}</td>
-          <td>{{ user.region}}</td>
-          <td>{{ user.country }}</td>
-          <td>{{ user.capital }}</td>
-          <td>{{ user.fips }}</td>
-          <td>{{user.iso2}}</td>
-        <td>{{user.iso3}}</td>
-        <td>{{user.isoNo}}</td>
-        <td>{{user.internet}}</td>
-
-
-        </tr>
-      </tbody>
-    </table>
+    <b-table striped hover :items="items" :fields="fields"></b-table>
   </div>
 </template>
-<script>
-var axios = require("axios").default;
 
+
+<script>
 export default {
-  name: "sampleApis",
+  name: "ResulT",
 
   data() {
     return {
-     
-      
-      options: {
-        method: "POST",
+      fields: ["iso3", "name"],
 
-        url: "https://github.com/richorama/country-code-lookup/blob/master/index.js/",
+      items: [
+        { name: "Barbados", iso3: "BRB" },
 
-       // headers: {
-          //"content-type": "application/json",
+        { name: "Brunei Darussalam", iso3: "BRN" },
 
-          //"X-RapidAPI-Host": "trains.p.rapidapi.com",
+        { name: "Bhutan", iso3: "BTN" },
 
-          //"X-RapidAPI-Key":"0030c715ecmsh58180c0530cc6e6p188880jsncda365dc0d9f",
-        //},
+        { name: "Bouvet Island", iso3: "BVT" },
 
-        data: { search: "" },
-      },
+        { name: "Botswana", iso3: "BWA" },
 
-      text: "",
+        { name: "Central African Republic", iso3: "CAF" },
 
-      searchData: {},
+        { name: "Canada", iso3: "CAN" },
+
+        { name: "Cocos (Keeling) Islands", iso3: "CCK" },
+
+        { name: "Switzerland", iso3: "CHE" },
+
+        { name: "Chile", iso3: "CHL" },
+
+        { name: "China", iso3: "CHN" },
+
+        { name: "Côte d'Ivoire", iso3: "CIV" },
+
+        { name: "Cameroon", iso3: "CMR" },
+
+        { name: "Congo, Democratic Republic of the", iso3: "COD" },
+
+        { name: "Congo", iso3: "COG" },
+
+        { name: "Cook Islands", iso3: "COK" },
+
+        { name: "Colombia", iso3: "COL" },
+      ],
     };
-  },
-
-  methods: {
-    async getData() {
-      this.options.data.search = this.text;
-      this.searchData = await axios.request(this.options);
-    },
   },
 };
 </script>
 
 <style scoped>
-table {
+b-table {
   font-family: arial;
-
   border-collapse: collapse;
-
-  width: 60%;
-
-  text-align: center;
-}
-
-td,
-th {
   border: 3px solid #dddddd;
-
+  width: 60%;
   text-align: center;
 
-  padding: 8px;
+
 }
 </style>
+
+
+
+
